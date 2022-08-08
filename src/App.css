@@ -1,0 +1,33 @@
+.pink{
+    background-color: #e078e0 !important;
+  
+
+}
+.card{
+    border:0 !important;
+    border-radius: 0% !important;
+    
+ 
+}
+.card:hover{
+    background-color: rgba(155, 153, 153, 0.2);
+}
+
+
+.product{
+border:1px solid #d3d3d3 !important ;
+margin-left: 10px !important;
+margin-top: 5px !important;
+
+}
+.container{
+    margin:1% !important;
+    padding: 0!important;
+   color: grey
+}
+.btx{
+    position: absolute;
+    right: 20px !important;
+    
+}
+
