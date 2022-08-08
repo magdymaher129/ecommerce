@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Navbar from "../Navbar";
+import Navbar from "./Navbar";
 import {
   addItem,
   delItem,
   removeitem,
   totalItem,
   clearAll,
-} from "../../reduxStore/createSlice";
+} from "../reduxStore/createSlice";
 import { useContext } from "react";
-import { UserContext } from "../../context/userContext";
+import { UserContext } from "../context/userContext";
 export default function Cart() {
   const { cartItem, price, qty } = useSelector((state) => state.update);
   const Items = JSON.parse(localStorage.getItem("cartItem"));

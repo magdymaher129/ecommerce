@@ -11,7 +11,7 @@ export default function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
-  const history =useHistory()
+  const history = useHistory();
   useEffect(() => {
     const getProduct = async () => {
       setLoading(true);
@@ -26,7 +26,7 @@ export default function Product() {
   const dispatch = useDispatch();
   const handleaddItem = () => {
     dispatch(addItem(product));
-    history.push('/cart')
+    history.push("/cart");
   };
   const Load = () => {
     return (
@@ -61,12 +61,13 @@ export default function Product() {
             <NavLink to='/cart' className='btn btn-outline-dark mx-1'>
               Go to cart
             </NavLink>
-            <button
+            <NavLink
+              to='/cart'
               className='btn btn-outline-dark'
               onClick={() => handleaddItem()}
             >
               Add to cart
-            </button>
+            </NavLink>
           </div>
         </div>
       </>
