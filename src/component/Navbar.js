@@ -1,12 +1,12 @@
 import "../App.css";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../context/userContext";
 
+
+import {useCart } from 'react-use-cart'
 export default function Navbar() {
-  const [qty,setQty]=useState(0)
-  const qtys=JSON.parse(localStorage.getItem("qty"));
+
+
+const {totalUniqueItems}=useCart();
   return (
     <div>
       <nav className='navbar navbar-expand-lg navbar-light pink '>
@@ -49,7 +49,7 @@ export default function Navbar() {
               </li>
             </ul>
           
-            {/* <div className='buttons btx ' > */}
+
               <NavLink
                 to='/login'
                 className='btn  btn-outline-dark  m-1 fw-bold'
@@ -64,9 +64,9 @@ export default function Navbar() {
               </NavLink>
               <NavLink to='/cart' className='btn  btn-dark m-1 fw-bold'>
                 <i className='fa fa-shopping-cart' aria-hidden='true'></i> cart
-                ({qtys})
+                ({totalUniqueItems})
               </NavLink>
-            {/* </div> */}
+       
           </div>
         </div>
       </nav>

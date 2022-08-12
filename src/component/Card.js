@@ -1,8 +1,6 @@
 import shop from "../assets/shop.jpg";
 import "../App.css";
-import { useContext } from "react";
-import { UserContext } from "../context/userContext";
-import Login from "../pages/login/Login";
+
 
 const Card = () => {
 

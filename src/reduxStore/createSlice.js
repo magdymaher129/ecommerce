@@ -24,21 +24,21 @@ export const getUser = createAsyncThunk("user/getUser", async (_, thunkAPI) => {
     return error.message;
   }
 });
-const cartItem = JSON.parse(localStorage.getItem("cartItem"));
-const price = JSON.parse(localStorage.getItem("price"));
-const qty = JSON.parse(localStorage.getItem("qty"));
+
 const initialState = {
   products: [],
   user: [],
   isloading: false,
   selected: [],
-  cartItem: cartItem,
+  cartItem: [],
   price: 0,
   qty: 0,
 };
 
 //------------------------------------------user reduser---------------------
 
+let x = 0;
+let y = 0;
 getProductss();
 getUser();
 export const updateReducer = createSlice({
@@ -48,7 +48,7 @@ export const updateReducer = createSlice({
   reducers: {
     addItem: (state, action) => {
       const itemIndex = state.cartItem.findIndex(
-        (item) => item.id === action.payload.id,
+        item => item.id === action.payload.id,
       );
       if (itemIndex >= 0) {
         state.cartItem[itemIndex].cartquanaty += 1;
@@ -85,16 +85,14 @@ export const updateReducer = createSlice({
       localStorage.setItem("cartItem", JSON.stringify(state.cartItem));
     },
     totalItem: (state, action) => {
-      let x = 0;
-      let y = 0;
 
       state.cartItem.map((item) => (x += item.price * item.cartquanaty));
       state.cartItem.map((item) => (y += item.cartquanaty));
       state.price = parseFloat(x.toFixed(2));
       state.qty = parseInt(y);
-      localStorage.setItem("price", JSON.stringify(state.price));
-      localStorage.setItem("cartItem", JSON.stringify(state.cartItem));
-      localStorage.setItem("qty", JSON.stringify(state.qty));
+      localStorage.setItem("price", x);
+      // localStorage.setItem("cartItem", JSON.stringify(state.cartItem));
+      localStorage.setItem("qty", y);
     },
     clearAll: (state) => {
       state.cartItem = [];
@@ -116,6 +114,7 @@ export const updateReducer = createSlice({
       state.isloading = false;
       state.products = action.payload;
       state.selected = action.payload;
+     
 
       // console.log(state.selected)
     },

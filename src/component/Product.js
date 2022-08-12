@@ -1,13 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { useHistory, NavLink } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { addItem } from "../reduxStore/createSlice";
 import { useDispatch } from "react-redux";
+import { useCart } from "react-use-cart";
 
 export default function Product() {
+  const { addItem } = useCart();
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,9 +25,10 @@ export default function Product() {
     getProduct();
   }, []);
 
-  const dispatch = useDispatch();
-  const handleaddItem = () => {
-    dispatch(addItem(product));
+  // const dispatch = useDispatch();
+
+  const handleaddItem = (item) => {
+    addItem(item);
     history.push("/cart");
   };
   const Load = () => {
@@ -58,16 +61,16 @@ export default function Product() {
           <h4 className='display-7 fw-bold mt-3'>Description :</h4>
           <p className='lead-5 fs-5 my-2'>{product.description}</p>
           <div style={{ PaddingBottom: "10px" }} className='my-4'>
-            <NavLink to='/cart' className='btn btn-outline-dark mx-1'>
+            <Link to='/carts' className='btn btn-outline-dark mx-1'>
               Go to cart
-            </NavLink>
-            <NavLink
+            </Link>
+            <Link
               to='/cart'
               className='btn btn-outline-dark'
-              onClick={() => handleaddItem()}
+              onClick={() => handleaddItem(product)}
             >
               Add to cart
-            </NavLink>
+            </Link>
           </div>
         </div>
       </>
